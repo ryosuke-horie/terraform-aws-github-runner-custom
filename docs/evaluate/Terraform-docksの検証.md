@@ -17,4 +17,4 @@ docker run --rm --volume "$(pwd):/terraform-docs" -u $(id -u) quay.io/terraform-
 
 以下のような出力を得ることができた。
 
-[terraform-docs.md](https://github.com/ryosuke-horie/terraform-aws-github-runner-custom/docs/evaluate/terraform-docs.md)
+[terraform-docs.md](https://github.com/ryosuke-horie/terraform-aws-github-runner-custom/terraform-docs.md)
