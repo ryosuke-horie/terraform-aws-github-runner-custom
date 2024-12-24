@@ -1,25 +1,8 @@
-# state
-*.tfstate*
-
-# Module directory
 .terraform/
 
-# keys
-*id_rsa*
+# terraformのtfstateファイルはS3リモートバックエンドで管理するため、ローカルには保存しない
+terraform.tfstate
+terraform.tfstate.backup
 
-# other
-node_modules/
-.idea
-.DS_Store
-*.out
-secrets.auto.tfvars
-.envrc
-*.zip
-*.gz
-*.tgz
-*.env*
-
-**/coverage/*
-
-node_modules/
-site/
+# AMIをpackerでビルドするときの変数ファイル
+packer-vars.json

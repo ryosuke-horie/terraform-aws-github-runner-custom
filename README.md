@@ -1,48 +1,14 @@
-# 【社内環境AWS】GitHub Self-Hosted Runner構築用Terraformモジュール
+# GitHub Self-Hosted Runner構築用Terraformモジュール
 
-## Clone元
+## 概要
 
-[GitHub リポジトリ](https://github.com/philips-labs/terraform-aws-github-runner)
-
-[OSS公式ドキュメント](https://philips-labs.github.io/terraform-aws-github-runner/)
-
-- Github公式が推奨しているSelfhost Runner構築用のTerraformモジュール
-- LambdaによってコントロールされたスポットEC2インスタンスによるSelf host Runnerを構築する。
+GitHub ActionsのセルフホストランナーをAWS上に構築するためのTerraformモジュールです。
+GitHubホストのランナーを利用する場合に比べて、カスタムAMIの利用やオートスケールによるCI/CDの高速化とコスト削減が目的です。
+*コスト削減効果はGitHub Actionsの実行時間がある程度長い場合に発揮されます。将来的に複数のプロジェクトにおいてCICDが実行されることを見越して構築しています。
 
 ## 構成図
 
-[構成図](/docs/assets/terraform-aws-github-runner-architecuture.jpg)
-
-## 初期構築
-
-### 1. OSSリポジトリのClone
-<https://github.com/philips-labs/terraform-aws-github-runner>
-
-- forkだとプライベートリポジトリに変更できなかったためClone
-
-### 2. Terraformのインストール
-
-- WSL2の中にインストールする
-- [公式ダウンロードページ](https://developer.hashicorp.com/terraform/install?product_intent=terraform)
- 	- LinuxのUbuntuのコマンドを実行
-
-### 3. セットアップガイドに従う
-<https://philips-labs.github.io/terraform-aws-github-runner/getting-started/>
-
-1. 組織用のGithub Appを作成
-2. terraform モジュールのセットアップ
- 1. <https://github.com/philips-labs/terraform-aws-github-runner/releases>
-   上記からLambdaのZipファイルをダウンロード
-   `modules/download-lambda`に保存する
- 2. 変数を調整する
-  1. lambda用のZipのパスとGithub Appsの部分
- 3. terraform applyを実行
-3. GitHub AppsでWebhook設定を有効化
- 1. Permission & EventでWorkflow JobをSubscribe
-4. VPCをカスタマイズ
-   1. VPCの部分はOSSに含まれていないため自前で実装する必要がある
-   2. vpc.tfに記載
-   3. Natインスタンスを利用してコスト削減を狙っている。
+![構成図](/docs/assets/セルフホストランナー構成図.jpg)
 
 ## 参考記事
 
